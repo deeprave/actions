@@ -12,6 +12,7 @@ inputs:
   sync-args:
     description: 'Extra arguments to pass to uv install'
     required: false
+    default: ''
   pytest-args:
     description: 'Extra arguments to pass to pytest'
     required: false
