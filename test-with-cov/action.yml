@@ -1,0 +1,30 @@
+name: 'Test with Coverage'
+description: 'Test a Python application with coverage reporting.'
+
+inputs:
+  python-version:
+    description: 'Python version to use'
+    required: true
+  sync-args:
+    description: 'Extra arguments to pass to uv install'
+    required: false
+  pytest-args:
+    description: 'Extra arguments to pass to pytest'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: ./test # Call Test action defined above. Note the relative path.
+      with:
+        python-version: ${{ inputs.python-version }}
+        sync-args: ${{ inputs.sync-args }}
+        pytest-args: ${{ inputs.pytest-args }}
+
+    - name: Generate coverage report
+      shell: bash
+      run: uv run pytest --cov=./ --cov-report=xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5 # or any other coverage reporting action.
+

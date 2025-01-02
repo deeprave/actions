@@ -1,0 +1,41 @@
+name: 'Test'
+description: 'Test a Python application using pytest.'
+
+inputs:
+  python-version:
+    description: 'Python version to use'
+    required: true
+  sync-args:
+    description: 'Additional arguments to pass to uv install'
+    required: false
+  pytest-args:
+    description: 'Extra arguments to pass to pytest'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: 'latest'
+
+    - name: Lint code
+      uses: astral-sh/ruff-action@v3
+      with:
+        version: 'latest'
+      run: ruff check
+
+    - name: Install dependencies
+      shell: bash
+      run: uv sync ${{ inputs.sync-args }}
+
+    - name: Run tests
+      shell: bash
+      run: uv run pytest ${{ inputs.pytest-args }}
+

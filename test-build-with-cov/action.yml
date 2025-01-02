@@ -1,0 +1,27 @@
+name: 'Test with Coverage and Build'
+description: 'Test a Python application, generate coverage report and build the package.'
+
+inputs:
+  python-version:
+    description: 'Python version to use'
+    required: true
+  sync-args:
+    description: 'Extra arguments to pass to uv install'
+    required: false
+  pytest-args:
+    description: 'Extra arguments to pass to pytest'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:  
+    - uses: ./test-with-cov
+      with:
+        python-version: ${{ inputs.python-version }}
+        sync-args: ${{ inputs.sync-args }}
+        pytest-args: ${{ inputs.pytest-args }}
+
+    - name: Build package
+      shell: bash
+      run: uv build
+

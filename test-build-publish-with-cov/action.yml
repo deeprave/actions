@@ -1,0 +1,30 @@
+name: 'Test with Coverage, Build and Publish'
+description: 'Test a Python application, generate coverage report, build and publish the package.'
+
+inputs:
+  python-version:
+    description: 'Python version to use'
+    required: true
+  sync-args:
+    description: 'Extra arguments to pass to uv install'
+    required: false
+  pytest-args:
+    description: 'Extra arguments to pass to pytest'
+    required: false
+  pypi-token: # For publishing to PyPI
+    description: 'PyPI API token'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: ./test-build-with-cov
+      with:
+        python-version: ${{ inputs.python-version }}
+        sync-args: ${{ inputs.sync-args }}
+        pytest-args: ${{ inputs.pytest-args }}
+
+    - name: Publish package
+      shell: bash
+      run: uv publish --token ${{ inputs.pypi-token }} # Or appropriate token variable.
+
