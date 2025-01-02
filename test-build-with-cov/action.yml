@@ -5,6 +5,10 @@ inputs:
   python-version:
     description: 'Python version to use'
     required: true
+  ruff-args:
+    description: 'Extra arguments to pass to ruff'
+    required: false
+    default: '--line-length=120'
   sync-args:
     description: 'Extra arguments to pass to uv install'
     required: false
@@ -18,6 +22,7 @@ runs:
     - uses: ./test-with-cov
       with:
         python-version: ${{ inputs.python-version }}
+        ruff-args: ${{ inputs.ruff-args }}
         sync-args: ${{ inputs.sync-args }}
         pytest-args: ${{ inputs.pytest-args }}
 
