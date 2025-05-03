@@ -1,0 +1,7 @@
+[project]
+name = "actions"
+version = "1.0.0"
+description = "GitHub Actions for test and build for Python apps"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []

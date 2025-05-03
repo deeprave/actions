@@ -20,7 +20,7 @@ inputs:
 runs:
   using: 'composite'
   steps:  
-    - uses: ./test
+    - uses: deeprave/actions/test@main
       with:
         python-version: ${{ inputs.python-version }}
         ruff-args: ${{ inputs.ruff-args }}
@@ -30,4 +30,3 @@ runs:
     - name: Build package
       shell: bash
       run: uv build
-

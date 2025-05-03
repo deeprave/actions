@@ -23,7 +23,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: ./test-build
+    - uses: deeprave/actions/test-build@main
       with:
         python-version: ${{ inputs.python-version }}
         ruff-args: ${{ inputs.ruff-args }}
@@ -33,4 +33,3 @@ runs:
     - name: Publish package
       shell: bash
       run: uv publish --token ${{ inputs.pypi-token }}
-

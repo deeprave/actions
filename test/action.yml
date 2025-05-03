@@ -35,7 +35,6 @@ runs:
       with:
         version: 'latest'
         args: ${{ inputs.ruff-args }}
-      run: ruff check
 
     - name: Install dependencies
       shell: bash
@@ -44,4 +43,3 @@ runs:
     - name: Run tests
       shell: bash
       run: uv run pytest ${{ inputs.pytest-args }}
-

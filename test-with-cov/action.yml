@@ -20,7 +20,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: ./test # Call Test action defined above. Note the relative path.
+    - uses: deeprave/actions/test@main
       with:
         python-version: ${{ inputs.python-version }}
         ruff-args: ${{ inputs.ruff-args }}
@@ -33,4 +33,3 @@ runs:
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5 # or any other coverage reporting action.
-
