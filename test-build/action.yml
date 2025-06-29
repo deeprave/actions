@@ -8,7 +8,6 @@ inputs:
   ruff-args:
     description: 'Extra arguments to pass to ruff'
     required: false
-    default: '--line-length=120'
   sync-args:
     description: 'Extra arguments to pass to uv install'
     required: false
