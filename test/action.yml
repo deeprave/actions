@@ -34,7 +34,7 @@ runs:
       uses: astral-sh/ruff-action@v4.0.0
       with:
         version: 'latest'
-        args: ${{ inputs.ruff-args }}
+        args: ${{ inputs.ruff-args || 'check' }}
 
     - name: Install dependencies
       shell: bash

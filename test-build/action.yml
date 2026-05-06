@@ -8,6 +8,7 @@ inputs:
   ruff-args:
     description: 'Extra arguments to pass to ruff'
     required: false
+    default: 'check'
   sync-args:
     description: 'Extra arguments to pass to uv install'
     required: false
@@ -19,7 +20,7 @@ inputs:
 runs:
   using: 'composite'
   steps:  
-    - uses: deeprave/actions/test@main
+    - uses: deeprave/actions/test@v1
       with:
         python-version: ${{ inputs.python-version }}
         ruff-args: ${{ inputs.ruff-args }}
