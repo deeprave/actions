@@ -1,7 +1,32 @@
 version: 2
 updates:
   - package-ecosystem: github-actions
-    directory: /
+    directory: /test
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /test-with-cov
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /test-build
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /test-build-with-cov
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /test-build-publish
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /test-build-publish-with-cov
     schedule:
       interval: weekly
 
